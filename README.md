@@ -2,9 +2,11 @@
 I have an approved extension until **3 DEC 2021 at 16:00**.
 
 I do not have a partner. **Working Individually**.
-My previous progress was uploaded to another account. I did something to my laptop which erased all histories, cookies, and login informations. Among them is the password to that GitHub account. I could not reset the password as I cannot access the associated email any more. So I had to upload my current updates to another personal GitHub account of mine.
 
-Anyways the following are the updates prior to the first one you see in this account. A total of 4 commits. 
+I am only uploading the files in the src folders. If you wish to see the entire thing, please refer to the `ivr_assignment.zip`.
+
+My previous progress was uploaded to another account. I did something to my laptop which erased all histories, cookies, and login informations, along with other disturbing damages. Among them is the password to that GitHub account. I could not reset the password as I cannot access the associated email any more. So I had to upload my current updates to another personal GitHub account of mine.
+
 ## Commits 27 Nov 2021 - 19 Nov 2021
 **These are the commit on the old account.**
 Update Sat 27 Nov 2021
