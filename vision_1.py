@@ -23,6 +23,7 @@ class image_converter:
         self.image_sub1 = message_filters.Subscriber("/camera1/robot/image_raw", Image)
         # initialize a subscriber to receive messages from a topic named /robot/camera2/image_raw
         self.image_sub2 = message_filters.Subscriber("/camera2/robot/image_raw", Image)
+        
         # Synchronize subscribers into one callback
         ts = message_filters.TimeSynchronizer([self.image_sub1, self.image_sub2], 10)
         ts.registerCallback(self.callback1)
@@ -203,10 +204,10 @@ class image_converter:
         x_transfered = np.cross(link2, y)
         joint2 = np.arccos(np.dot(x_transfered, x) / (self.get_vector_length(x_transfered) * self.get_vector_length(x)))
 
-        angle_link2_y = np.arccos(np.dot(link2, y) / (self.get_vector_length(link2) * self.get_vector_length(y)))
-        joint3 = angle_link2_y - np.pi / 2
+        angle_link2_y = np.arccos(np.dot(link2, y) / (self.get_vector_length(link2) * self.get_vector_length(y))))
+        joint3 = angle_link2_y #- np.pi / 2
 
-        norm_link2_link3 = np.linalg.norm(link2) * np.linalg.norm(link3)
+        norm_link2_link3 = np.linalg.norm(link3) #* np.linalg.norm(link2)
         cross = np.arcsin(np.linalg.norm(np.cross(link2, link3)) / norm_link2_link3)
         angle_link3_z = np.arccos(np.dot(link2, link3) / (self.get_vector_length(link2) * self.get_vector_length(link3)))
         if (cross < 0):
@@ -237,8 +238,8 @@ class image_converter:
         try:
             self.image_pub1.publish(self.bridge.cv2_to_imgmsg(self.cv_image1, "bgr8"))
             self.joint2_pub.publish(self.joint2)
-            self.joint3_pub.publish(self.joint3)
-            self.joint4_pub.publish(self.joint4)
+            #self.joint3_pub.publish(self.joint3)
+            #self.joint4_pub.publish(self.joint4)
         except CvBridgeError as e:
             print(e)
 
@@ -255,4 +256,7 @@ def main(args):
 
 # run the code if the node is called
 if __name__ == '__main__':
-    main(sys.argv)
+    try:
+        main(sys.argv)
+    except rospy.ROSInteruptException:
+        pass
