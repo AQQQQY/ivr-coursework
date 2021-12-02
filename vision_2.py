@@ -200,15 +200,17 @@ class image_converter:
         link2 = centre_blue - centre_yellow
         link3 = centre_red - centre_blue
 
-        angle_link2_y = np.arccos(np.dot(link2, y) / (self.get_vector_length(link2) * self.get_vector_length(y))
+
+
+        angle_link2_y = np.arccos(np.dot(link2, y) / (self.get_vector_length(link2) * self.get_vector_length(y)))
         joint1 = angle_link2_y
 
-        angle_link2_z = np.arccos(np.dot(link2, z) / (self.get_vector_length(link2) * self.get_vector_length(z))
+        angle_link2_z = np.arccos(np.dot(link2, z) / (self.get_vector_length(link2) * self.get_vector_length(z)))
         joint3 = angle_link2_z
 
-        norm_link2_link3 = np.linalg.norm(link2) #* np.linalg.norm(link3)
+        norm_link2_link3 = np.linalg.norm(link2) * np.linalg.norm(link3)
         cross = np.arcsin(np.linalg.norm(np.cross(link2, link3)) / norm_link2_link3)
-        angle_link3_z = np.arccos(np.dot(link2, link3) / (self.get_vector_length(link2) * self.get_vector_length(link3))
+        angle_link3_z = np.arccos(np.dot(link2, link3) / (self.get_vector_length(link2) * self.get_vector_length(link3)))
         if (cross < 0):
             joint4 = -angle_link3_z
         else:
@@ -257,5 +259,5 @@ def main(args):
 if __name__ == '__main__':
     try:
         main(sys.argv)
-    except rospy.ROSInteruptException:
+    except rospy.ROSInterruptException:
         pass

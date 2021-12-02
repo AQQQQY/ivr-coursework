@@ -13,17 +13,17 @@ from cv_bridge import CvBridge, CvBridgeError
 class Move:
 # Defines subscribers
     def __init__(self):
-        # initialise the node named vision 1 move
-        rospy.init_node('sinusoidal_vision_1', anonymous=True)
-        # initialise a publisher to send the next joint 2 position to joint1_2position_controller
-        self.joint_angle_2 = rospy.Publisher( "/robot/joint2_position_controller/command", Float64, queue_size = 10)
+        # initialise the node named vision
+        rospy.init_node('sinusoidal_vision_2', anonymous=True)
+        # initialise a publisher to send the next joint 1 position to joint1_position_controller
+        self.joint_angle_1 = rospy.Publisher( "/robot/joint1_position_controller/command", Float64, queue_size = 10)
         # initialise a publisher to send the next joint 3 position to joint3_position_controller
         self.joint_angle_3 = rospy.Publisher( "/robot/joint3_position_controller/command", Float64, queue_size = 10)
         # initialise a publisher to send the next joint 4 position to joint4_position_controller
         self.joint_angle_4 = rospy.Publisher( "/robot/joint4_position_controller/command", Float64, queue_size = 10)
-
-        # initialise joint
-        self.joint2 = Float64()
+    
+        # initialise joints
+        self.joint1 = Float64()
         self.joint3 = Float64()
         self.joint4 = Float64()
 
@@ -31,11 +31,11 @@ class Move:
         while not rospy.is_shutdown():
             rate = rospy.Rate(10)
             time = rospy.get_time()
-            self.joint2.data = np.pi/2 * (np.sin(np.pi/15 * time))
+            self.joint1.data = np.pi * (np.sin(np.pi/28 * time))
             self.joint3.data = np.pi/2 * (np.sin(np.pi/20 * time))
             self.joint4.data = np.pi/2 * (np.sin(np.pi/18 * time))
             rate.sleep()
-            
+
 def main(args):
     m = Move()
     try:

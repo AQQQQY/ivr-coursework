@@ -110,17 +110,14 @@ class forward_kin:
         dt = cur_time - self.time_previous_step
         self.time_previous_step = cur_time
 
-
+        
         # end effector est position from vision
         pos = np.array([self.ee_x, self.ee_y, self.ee_z])
         pos_d = self.target_pos
-
         self.error_d = ((pos_d - pos) - self.error) / dt
         self.error =  pos - pos_d
-
         J_inv = np.linalg.pinv(self.calculate_Jacobian(self.joint3, self.joint4, self.joint1))
         q = np.array([self.joint1, self.joint3, self.joint4])
-        
         dq_d = np.dot(J_inv, (np.dot(K_d, self.error_d.transpose()) + np.dot(K_p, self.error.transpose())))
         q_d = q + (dt * dq_d)
         print('q_d: ', q_d)
@@ -129,13 +126,14 @@ class forward_kin:
 
     def calculate_Jacobian(self, x, y, z):
         J = np.matrix([
-            [0.8 * np.sin(z) * np.cos(x) * np.cos(y) + 3.2 * np.sin(z) * np.cos(x),
-             -0.8 * np.sin(x) * np.sin(y) * np.sin(z) + 2.8 * np.cos(y) * np.cos(z),
-             0.8 * np.sin(x) * np.cos(y) * np.cos(z) + 3.2 * np.sin(x) * np.cos(z) - 2.8 * np.sin(y) * np.sin(z)],
-            [-2.8 * np.cos(x) * np.cos(y) * np.cos(z) - 3.2 * np.cos(x) * np.cos(z),
-             2.8 * np.sin(x) * np.sin(y) * np.cos(z) + 2.8 * np.sin(z) * np.cos(y),
-             2.8 * np.sin(x) * np.sin(z) * np.cos(y) + 3.2 * np.sin(x) * np.sin(z) + 2.8 * np.sin(y) * np.cos(z)],
-            [-2.8 * np.sin(x) * np.cos(y) - 3.2 * np.sin(x), -2.8 * np.sin(y) * np.cos(x), 0],
+            [
+            [-2.8 * np.sin(x) * np.cos(y) - 2.8 * np.sin(x), -3.2 * np.sin(y) * np.cos(x), 0],
+            0.8 * np.sin(z) * np.cos(x) * np.cos(y) + 2.8 * np.sin(z) * np.cos(x),
+             -0.8 * np.sin(x) * np.sin(y) * np.sin(z) + 3.2 * np.cos(y) * np.cos(z),
+             0.8 * np.sin(x) * np.cos(y) * np.cos(z) + 2.8 * np.sin(x) * np.cos(z) - 3.2 * np.cos(y) * np.cos(z)],
+            [-2.8 * np.cos(x) * np.cos(y) * np.cos(z) - 2.8 * np.cos(x) * np.cos(z),
+             2.8 * np.sin(x) * np.sin(y) * np.cos(z) + 3.2 * np.sin(z) * np.cos(y),
+             2.8 * np.sin(x) * np.sin(z) * np.cos(y) + 2.8 * np.sin(x) * np.sin(z) + 3.2 * np.cos(y) * np.sin(z)],
         ])
         return J
 
@@ -154,5 +152,5 @@ def main(args):
 if __name__ == '__main__':
     try:
         main(sys.argv)
-    except rospy.ROSInteruptException:
+    except rospy.ROSInterruptException:
         pass

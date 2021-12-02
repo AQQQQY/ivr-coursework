@@ -23,7 +23,6 @@ class image_converter:
         self.image_sub1 = message_filters.Subscriber("/camera1/robot/image_raw", Image)
         # initialize a subscriber to receive messages from a topic named /robot/camera2/image_raw
         self.image_sub2 = message_filters.Subscriber("/camera2/robot/image_raw", Image)
-        
         # Synchronize subscribers into one callback
         ts = message_filters.TimeSynchronizer([self.image_sub1, self.image_sub2], 10)
         ts.registerCallback(self.callback1)
@@ -204,10 +203,10 @@ class image_converter:
         x_transfered = np.cross(link2, y)
         joint2 = np.arccos(np.dot(x_transfered, x) / (self.get_vector_length(x_transfered) * self.get_vector_length(x)))
 
-        angle_link2_y = np.arccos(np.dot(link2, y) / (self.get_vector_length(link2) * self.get_vector_length(y))))
-        joint3 = angle_link2_y #- np.pi / 2
+        angle_link2_y = np.arccos(np.dot(link2, y) / (self.get_vector_length(link2) * self.get_vector_length(y)))
+        joint3 = angle_link2_y - np.pi / 2
 
-        norm_link2_link3 = np.linalg.norm(link3) #* np.linalg.norm(link2)
+        norm_link2_link3 = np.linalg.norm(link2) * np.linalg.norm(link3)
         cross = np.arcsin(np.linalg.norm(np.cross(link2, link3)) / norm_link2_link3)
         angle_link3_z = np.arccos(np.dot(link2, link3) / (self.get_vector_length(link2) * self.get_vector_length(link3)))
         if (cross < 0):
@@ -258,5 +257,5 @@ def main(args):
 if __name__ == '__main__':
     try:
         main(sys.argv)
-    except rospy.ROSInteruptException:
+    except rospy.ROSInterruptException:
         pass
