@@ -237,8 +237,8 @@ class image_converter:
         try:
             self.image_pub1.publish(self.bridge.cv2_to_imgmsg(self.cv_image1, "bgr8"))
             self.joint2_pub.publish(self.joint2)
-            #self.joint3_pub.publish(self.joint3)
-            #self.joint4_pub.publish(self.joint4)
+            self.joint3_pub.publish(self.joint3)
+            self.joint4_pub.publish(self.joint4)
         except CvBridgeError as e:
             print(e)
 
@@ -255,7 +255,4 @@ def main(args):
 
 # run the code if the node is called
 if __name__ == '__main__':
-    try:
-        main(sys.argv)
-    except rospy.ROSInterruptException:
-        pass
+    main(sys.argv)

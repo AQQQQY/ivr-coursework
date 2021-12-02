@@ -230,17 +230,17 @@ class image_converter:
         joints_angle = self.detect_joint_angles(self.cv_image1, self.cv_image2)
         self.joint1 = Float64()
         self.joint1.data = joints_angle[0]
-        #self.joint3 = Float64()
-        #self.joint3.data = joints_angle[1]
-        #self.joint4 = Float64()
-        #self.joint4.data = joints_angle[2]
+        self.joint3 = Float64()
+        self.joint3.data = joints_angle[1]
+        self.joint4 = Float64()
+        self.joint4.data = joints_angle[2]
 
         # Publish the results
         try:
             self.image_pub1.publish(self.bridge.cv2_to_imgmsg(self.cv_image1, "bgr8"))
             self.joint1_pub.publish(self.joint1)
-            #self.joint3_pub.publish(self.joint3)
-            #self.joint4_pub.publish(self.joint4)
+            self.joint3_pub.publish(self.joint3)
+            self.joint4_pub.publish(self.joint4)
         except CvBridgeError as e:
             print(e)
 
@@ -257,7 +257,4 @@ def main(args):
 
 # run the code if the node is called
 if __name__ == '__main__':
-    try:
-        main(sys.argv)
-    except rospy.ROSInterruptException:
-        pass
+    main(sys.argv)

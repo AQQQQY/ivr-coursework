@@ -34,7 +34,15 @@ class Move:
             self.joint1.data = np.pi * (np.sin(np.pi/28 * time))
             self.joint3.data = np.pi/2 * (np.sin(np.pi/20 * time))
             self.joint4.data = np.pi/2 * (np.sin(np.pi/18 * time))
+            try:
+                self.joint_angle_1.publish(self.joint1.data)
+                self.joint_angle_3.publish(self.joint3.data)
+                self.joint_angle_4.publish(self.joint4.data)
+            except CvBridgeError as e:
+                print(e)
+        
             rate.sleep()
+        # call the class
 
 def main(args):
     m = Move()
