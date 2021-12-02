@@ -35,3 +35,6 @@ Update Tue 1 Dec 2021
 - Not much was done today. Having a fever, hoping it is only a cold not anything worse. 
 - Today was mainly testing and reading through threads and tutorials. :)
 - Hope I feel better tomorrow.
+
+Update Wed 2 Dec 2021
+- I've just uploaded my progress so far. No comments. I'm taking a nap. The fever is killing me.
