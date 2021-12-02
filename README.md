@@ -24,9 +24,14 @@ Update Sat 29 Nov 2021 <1>
 Update Sat 29 Nov 2021 <2>
 - Replaced the files with new nersion. Although is already the 30th but I am gonna count it as the 29th as I was just finishing up.
 
-Update Sat 30 Nov 2021 <1>
+Update Sun 30 Nov 2021 <1>
 - Still working on the code. I'll upload a version now and probably another one after midnight. I did get much done today. Focused on the assignment for another coursework.
 
-Update Sat 30 Nov 2021 <2>
+Update Mon 31 Nov 2021 <2>
 - Yeah I didn't really had any progress tonight. I kind of... broke the code. So... Yeah... I'll just upload what I have on hand now. I am exhausted and I have to sleep now...
 - You can probably see thart this code is a mess and not much has been changed, but I'll fix thema in the  morning. 
+
+Update Tue 1 Dec 2021
+- Not much was done today. Having a fever, hoping it is only a cold not anything worse. 
+- Today was mainly testing and reading through threads and tutorials. :)
+- Hope I feel better tomorrow.
